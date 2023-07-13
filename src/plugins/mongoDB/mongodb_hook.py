@@ -12,7 +12,7 @@ class MongoDBHook:
         self.database = self.db.testing
 
     def insert_df(self, df, account_name):
-        # Only inserts dataframes that have a date later than the latest transaction date for that account
+        # Only inserts data that have a date later than the latest transaction date for that account
         latest_date_account = self.database.find_one(
             {"account": account_name},
             sort=[("date", pymongo.DESCENDING)],
