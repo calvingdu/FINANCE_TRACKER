@@ -30,7 +30,6 @@ def move_file(file_name, old_directory, new_suffix, old_suffix="unprocessed/"):
         directory = old_directory.replace(old_suffix, "")
         Path(directory + new_suffix).mkdir(parents=True, exist_ok=True)
         os.rename(old_directory + file_name, directory + new_suffix + file_name)
-        print(old_directory + file_name, directory + new_suffix + file_name)
     else:
         Path(old_directory + new_suffix).mkdir(parents=True, exist_ok=True)
         os.rename(old_directory + file_name, old_directory + new_suffix + file_name)

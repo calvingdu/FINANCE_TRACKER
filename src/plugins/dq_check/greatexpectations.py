@@ -1,23 +1,19 @@
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
 import great_expectations as gx
 
 from src.plugins.dq_check.gx_config import get_checkpoint_config
 from src.plugins.dq_check.gx_config import get_data_context_config
 
 
-def greatexpectations(
+def gx_execution(
     df_to_validate,
     data_asset_name,
     expectation_suite_name,
+    ge_root_dir,
     evaluation_parameters=None,
     **kwargs,
 ):
-    ge_root_dir = os.path.join(Path(__file__).parents[2], "great_expectations")
-
     data_context_config = get_data_context_config(ge_root_dir=ge_root_dir)
     context = gx.get_context(project_config=data_context_config)
 

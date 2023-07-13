@@ -3,7 +3,7 @@ from __future__ import annotations
 accounts_config = {
     "amex_config": {
         "account_name": "AMEX",
-        "expectation_suite_name": "amex_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "date": "string",
             "reference": "string",
@@ -15,7 +15,7 @@ accounts_config = {
     },
     "bmo_cc_config": {
         "account_name": "BMOcc",
-        "expectation_suite_name": "bmocc_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "index": "int64",
             "bank_card": "float64",
@@ -27,7 +27,7 @@ accounts_config = {
     },
     "bmo_checking_config": {
         "account_name": "BMOchecking",
-        "expectation_suite_name": "bmochecking_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "bank_card": "string",
             "transaction_type": "string",
@@ -38,7 +38,7 @@ accounts_config = {
     },
     "rbc_checking_config": {
         "account_name": "RBCchecking",
-        "expectation_suite_name": "rbcchecking_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "account_type": "string",
             "account_number": "float64",
@@ -53,7 +53,7 @@ accounts_config = {
     },
     " cibc_checking_config": {
         "account_name": "CIBCchecking",
-        "expectation_suite_name": "cibcchecking_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "date": "string",
             "description": "string",
@@ -63,7 +63,7 @@ accounts_config = {
     },
     "cibc_cc_config": {
         "account_name": "CIBCcc",
-        "expectation_suite_name": "cibccc_suite",
+        "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "date": "string",
             "description": "string",

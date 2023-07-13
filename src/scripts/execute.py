@@ -3,10 +3,12 @@ from __future__ import annotations
 import os
 
 from config.config import config
-from src.plugins.dq_check.greatexpectations import greatexpectations
+from src.plugins.dq_check.gx_dq_check import gx_dq_check
+from src.plugins.dq_check.gx_results_processor import print_gx_result
 from src.plugins.mongoDB.mongodb_hook import MongoDBHook
 from src.scripts.helper.etl_data import common_preload_transform
 from src.scripts.helper.identify_accounts import identify_accounts
+from src.scripts.helper.iterate_datasets import change_transaction_file_name
 from src.scripts.helper.iterate_datasets import get_directory_files
 from src.scripts.helper.iterate_datasets import move_file
 
@@ -21,7 +23,7 @@ def execute():
         file_type=".csv",
     )
 
-    # STAGE 2: Identify Data
+    # STAGE 2: Identify Bank Data
     for file_string in file_paths:
         directory, file = os.path.split(file_string)
         if not directory.endswith("/"):
@@ -43,32 +45,34 @@ def etl_execute(directory, file, config, transform_func):
 
         # STAGE 3: Transform Data
         df = transform_func(file_name=file, file_path=directory, schema=config)
+        df = common_preload_transform(df)
 
         # STAGE 4: DQ Check Data
-        greatexpectations(
+        gx_result = gx_dq_check(
             df_to_validate=df,
             data_asset_name=account_name,
             expectation_suite_name=expectation_suite_name,
         )
 
+        print_gx_result(directory=directory, file=file, gx_result=gx_result)
+
         # STAGE 5: Categorize Data
 
         # STAGE 6: Load Data Into DB
-        df = common_preload_transform(
-            directory=directory,
-            file_name=file,
-            df=df,
-            account_name=account_name,
-        )
         mongodb_hook = MongoDBHook()
         mongodb_hook.insert_df(df=df, account_name=account_name)
 
         # STAGE 7: Move Data into Processed
-        move_file(file_name=file, old_directory=directory, new_suffix="processed/")
+        file_name = change_transaction_file_name(
+            directory=directory,
+            old_name=file,
+            df=df,
+            bank_acount=account_name,
+        )
 
+        move_file(file_name=file_name, old_directory=directory, new_suffix="processed/")
     except Exception as e:
-        print(f"Exception: {e}")
-        move_file(file_name=file, old_directory=directory, new_suffix="unprocessed/")
+        print(f"Error: {e}")
 
 
 execute()

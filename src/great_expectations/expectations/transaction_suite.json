@@ -5,10 +5,109 @@
         {
             "expectation_type": "expect_table_row_count_to_be_between",
             "kwargs": {
-                "min_value": 1
+                "min_value": 1,
+                "max_value": 500
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_table_columns_to_match_set",
+            "kwargs": {
+                "column_set": [
+                    "account",
+                    "date",
+                    "amount",
+                    "description",
+                    "processed_date"
+                ]
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_between",
+            "kwargs": {
+                "column": "amount",
+                "min_value": -10000,
+                "max_value": 10000
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "account"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "date"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "amount"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "description"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "processed_date"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_of_type",
+            "kwargs": {
+                "column": "account",
+                "type_": "str"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_of_type",
+            "kwargs": {
+                "column": "date",
+                "type_": "datetime64"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_of_type",
+            "kwargs": {
+                "column": "amount",
+                "type_": "float"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_of_type",
+            "kwargs": {
+                "column": "description",
+                "type_": "str"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_of_type",
+            "kwargs": {
+                "column": "processed_date",
+                "type_": "datetime64"
             },
             "meta": {}
         }
+
     ],
     "ge_cloud_id": null,
     "meta": {
