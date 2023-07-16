@@ -15,5 +15,6 @@ lint-fix:
 test:
 	@echo
 	@echo --- Testing --- ;\
+	export PYTHON_ENV=develop
 	pytest
 	@echo --- Testing Completed ---
