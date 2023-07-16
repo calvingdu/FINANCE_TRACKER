@@ -42,6 +42,9 @@ jobs:
         ls -la
         find src
     - name: Test with pytest
+      working-directory: tests
       run: |
+        ls -la
+        export PYTHONPATH="${PYTHONPATH}:${GITHUB_WORKSPACE}"
         export PYTHON_ENV=develop
         pytest
