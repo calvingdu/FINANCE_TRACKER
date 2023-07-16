@@ -36,11 +36,6 @@ jobs:
     - name: Format code
       run: |
         black .
-    - name: Open src
-      working-directory: src/
-      run: |
-        ls -la
-        find src
     - name: Test with pytest
       working-directory: tests
       run: |
