@@ -36,13 +36,10 @@ jobs:
     - name: Format code
       run: |
         black .
-    - name: Open src
-      working-directory: .
-      run: |
-        ls -la
     - name: Test with pytest
-      working-directory: .
+      working-directory: tests
       run: |
         ls -la
+        export PYTHONPATH="${PYTHONPATH}:${GITHUB_WORKSPACE}"
         export PYTHON_ENV=develop
-        pytest tests/
+        pytest 
