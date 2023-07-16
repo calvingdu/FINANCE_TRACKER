@@ -40,8 +40,9 @@ jobs:
       working-directory: .
       run: |
         ls -la
-        find src
     - name: Test with pytest
+      working-directory: .
       run: |
+        ls -la
         export PYTHON_ENV=develop
         pytest tests/
