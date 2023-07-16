@@ -22,23 +22,26 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: ${{ github.repository }}  # Add this line to properly checkout the repository
-    - name: Set up Python 3.10
+    - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
-        python-version: "3.10"
+        python-version: "3.9"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Add root directory to Python path
-      run: |
-        echo "export PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
     - name: Run linter
       run: |
         flake8
     - name: Format code
       run: |
         black .
+    - name: Open src
+      working-directory: src/
+      run: |
+        ls -la
+        find src
     - name: Test with pytest
       run: |
+        export PYTHON_ENV=develop
         pytest
