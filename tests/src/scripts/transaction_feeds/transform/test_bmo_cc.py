@@ -3,12 +3,13 @@ from __future__ import annotations
 import pandas as pd
 from pandas import Timestamp
 
+from configuration.config_setup import config
 from src.scripts.transaction_feeds.accounts_config import accounts_config
 from src.scripts.transaction_feeds.transform.transform_bmo_cc_transactions import (
     transform_dataset,
 )
 
-transform_data_directory = "src/scripts/transaction_feeds/transform/data/"
+transform_data_directory = config.get("transform_data_directory")
 
 expected_dataframe = pd.DataFrame(
     {
