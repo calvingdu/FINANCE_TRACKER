@@ -9,7 +9,7 @@ from src.scripts.transaction_feeds.transform.transform_amex_transactions import 
     transform_dataset,
 )
 
-transform_data_directory = config.get("transform_data_directory")
+transform_data_directory = "tests/src/scripts/transaction_feeds/transform/data/"
 
 expected_dataframe = pd.DataFrame(
     {
