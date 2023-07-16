@@ -37,10 +37,13 @@ jobs:
       run: |
         black .
     - name: Open src
-      working-directory: src/
+      working-directory: .
       run: |
         ls -la
         find src
+    - name: Add root directory to Python path
+      run: |
+        echo "export PYTHONPATH=$(dirname ${{ github.workspace }})" >> $GITHUB_ENV
     - name: Test with pytest
       run: |
         export PYTHON_ENV=develop
