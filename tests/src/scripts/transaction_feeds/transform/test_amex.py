@@ -3,7 +3,6 @@ from __future__ import annotations
 import pandas as pd
 from pandas import Timestamp
 
-from configuration.config_setup import config
 from src.scripts.transaction_feeds.accounts_config import accounts_config
 from src.scripts.transaction_feeds.transform.transform_amex_transactions import (
     transform_dataset,
