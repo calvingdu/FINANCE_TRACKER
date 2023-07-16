@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 
-from config.config import config
+from configuration.config_setup import config
 from src.plugins.dq_check.gx_dq_check import gx_dq_check
 from src.plugins.dq_check.gx_results_processor import print_gx_result
 from src.plugins.mongoDB.mongodb_hook import MongoDBHook
