@@ -7,7 +7,7 @@ import pandas as pd
 from src.scripts.helper.etl_data import common_transform
 
 
-def transform_dataset(file_name, file_path, schema):
+def transform_dataset(file_name: str, file_path: str, schema: dict) -> pd.DataFrame:
     column_names = schema["data_fields"].keys()
     account_name = schema["account_name"]
 
@@ -31,7 +31,7 @@ def transform_dataset(file_name, file_path, schema):
     return df
 
 
-def transform_data(df, account_name):
+def transform_data(df: pd.DataFrame, account_name: str) -> pd.DataFrame:
     df = common_transform(df, account_name)
     df["date"] = pd.to_datetime(df["date"], format="%Y%m%d")
     df["amount"] = df["amount"].astype(float)
