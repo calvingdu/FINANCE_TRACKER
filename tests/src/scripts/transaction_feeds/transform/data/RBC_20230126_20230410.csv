@@ -1,0 +1,4 @@
+"Account Type","Account Number","Transaction Date","Cheque Number","Description 1","Description 2","CAD$","USD$"
+Chequing,12345,1/26/2023,,"STAFF - PAYROLL",,123.45,,
+Chequing,12345,1/26/2023,,"Email Trfs","E-TRANSFER SENT ",-52.92,,
+Chequing,12345,2/9/2023,,"STAFF - PAYROLL",,1000.12,,

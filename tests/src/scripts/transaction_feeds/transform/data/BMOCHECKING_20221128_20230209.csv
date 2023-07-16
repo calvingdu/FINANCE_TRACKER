@@ -1,0 +1,9 @@
+﻿Following data is valid as of 20230213200629 (Year/Month/Day/Hour/Minute/Second)
+
+
+First Bank Card,Transaction Type,Date Posted, Transaction Amount,Description
+
+
+'12345',CREDIT,20221223,114.54,EXPENSE 1
+'12345',CREDIT,20221223,112.89,EXPENSE 2
+'12345',CREDIT,20221228,6000.0,EXPENSE 3

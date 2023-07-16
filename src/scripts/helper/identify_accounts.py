@@ -20,29 +20,35 @@ from src.scripts.transaction_feeds.transform.transform_cibc_cc_transactions impo
 from src.scripts.transaction_feeds.transform.transform_cibc_checking_transactions import (
     transform_dataset as transform_cibc_checking_dataset,
 )
-from src.scripts.transaction_feeds.transform.transform_rbc_checking_transactions import (
-    transform_dataset as transform_rbc_checking_dataset,
+from src.scripts.transaction_feeds.transform.transform_rbc_direct_investing_transactions import (
+    transform_dataset as transform_rbc_direct_investing_dataset,
+)
+from src.scripts.transaction_feeds.transform.transform_rbc_transactions import (
+    transform_dataset as transform_rbc_dataset,
 )
 
 
 def identify_accounts(directory, file):
     if identify_bmo_checking(directory, file):
-        config = accounts_config["bmo_checking_config"]
+        config = accounts_config["bmo_checking"]
         transform_func = transform_bmo_checking_dataset
     elif identify_bmo_cc(directory, file):
-        config = accounts_config["bmo_cc_config"]
+        config = accounts_config["bmo_cc"]
         transform_func = transform_bmo_cc_dataset
-    elif identify_rbc_checking(directory, file):
-        config = accounts_config["rbc_checking_config"]
-        transform_func = transform_rbc_checking_dataset
+    elif identify_rbc(directory, file):
+        config = accounts_config["rbc"]
+        transform_func = transform_rbc_dataset
+    elif identify_rbc_direct_investing(directory, file):
+        config = accounts_config["rbc_direct_investing"]
+        transform_func = transform_rbc_direct_investing_dataset
     elif identify_amex(directory, file):
-        config = accounts_config["amex_config"]
+        config = accounts_config["amex"]
         transform_func = transform_amex_dataset
     elif identify_cibc_checking(directory, file):
-        config = accounts_config["cibc_checking_config"]
+        config = accounts_config["cibc_checking"]
         transform_func = transform_cibc_checking_dataset
     elif identify_cibc_cc(directory, file):
-        config = accounts_config["cibc_cc_config"]
+        config = accounts_config["cibc_cc"]
         transform_func = transform_cibc_cc_dataset
 
     return config, transform_func
@@ -70,7 +76,7 @@ def identify_bmo_checking(directory, file):
             return True
 
 
-def identify_rbc_checking(directory, file):
+def identify_rbc(directory, file):
     with open(directory + file) as csv_file:
         csv_reader = csv.reader(csv_file)
         if any(
@@ -78,6 +84,13 @@ def identify_rbc_checking(directory, file):
             in "".join(row)
             for row in csv_reader
         ):
+            return True
+
+
+def identify_rbc_direct_investing(directory, file):
+    with open(directory + file) as csv_file:
+        csv_reader = csv.reader(csv_file)
+        if any("Activity Export as of " in "".join(row) for row in csv_reader):
             return True
 
 
