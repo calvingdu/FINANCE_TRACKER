@@ -11,3 +11,9 @@ lint-fix:
 	@echo --- Lint Fix --- ;\
 	pre-commit run --all-files
 	@echo --- Lint Completed ---
+
+test:
+	@echo
+	@echo --- Testing --- ;\
+	pytest
+	@echo --- Testing Completed ---

@@ -9,12 +9,12 @@ class MongoDBHook:
     def __init__(self):
         self.client = MongoClient()
         self.db = self.client.test_database
-        self.database = self.db.testing
+        self.collection = self.db.testing
 
-    def insert_df(self, df, account_name):
+    def insert_df(self, df: pd.DataFrame, account: str):
         # Only inserts data that have a date later than the latest transaction date for that account
-        latest_date_account = self.database.find_one(
-            {"account": account_name},
+        latest_date_account = self.collection.find_one(
+            {"account": account},
             sort=[("date", pymongo.DESCENDING)],
         )
         if latest_date_account is not None:
@@ -23,15 +23,23 @@ class MongoDBHook:
             latest_date = pd.to_datetime(0000 - 00 - 00)
 
         df = df[df["date"] > latest_date]
+        if df.empty:
+            return 0
+
         df_dict = df.to_dict("records")
 
-        self.database.insert_many(df_dict)
+        result = self.collection.insert_many(df_dict, ordered=False)
+        new_rows_count = len(result.inserted_ids)
+        return new_rows_count
 
     def delete_all(self):
-        self.database.delete_many({})
+        self.collection.delete_many({})
 
-    def extract_df(self):
-        cursor = self.database.find({})
+    def extract_df(self, account=None):
+        if account is None:
+            cursor = self.collection.find({})
+        else:
+            cursor = self.collection.find({"account": account})
         df = pd.DataFrame(list(cursor))
 
         # Delete the _id

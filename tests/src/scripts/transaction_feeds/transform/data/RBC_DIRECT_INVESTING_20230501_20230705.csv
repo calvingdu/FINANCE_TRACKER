@@ -1,0 +1,20 @@
+﻿"Activity Export as of Jul 13, 2023 8:00:29 pm ET"
+
+"Account: 12345 - FHSA"
+
+"Trades this month: 0"
+
+"3 Activities"
+
+"Date","Activity","Symbol","Symbol Description","Quantity","Price","Settlement Date","Account","Value","Currency","Description"
+"July 5, 2023","Distribution","ABC","INVESTMENT","","0.23","July 5, 2023","12345","30.00","CAD","INVESTMENT DIST      ON     131 SHS REC 06/29/23 PAY 07/05/23"
+"May 9, 2023","Buy","ABC","INVESTMENT","131","60.47","May 11, 2023","12345","-8000","CAD","INVESTMENT UNSOLICITED AVG PRICE SHOWN-DETAILS ON REQ DA"
+"May 1, 2023","Deposits & Contributions","","","","","May 1, 2023","12345","8000","CAD","CON - CONTRIBUTION"
+
+"Disclaimers"
+"1 This exchange rate is based on the previous business day's average value of the U.S. dollar in Canadian dollars. However, this rate will not be used when a currency conversion is required for same day transactions. To obtain rates for same day currency conversion, please contact an Investment Services Representative at 1-800-769-2560."
+"3 A trade is defined as a stock, exchange-traded fund or option order which a commission has been charged."
+"Practice accounts are for educational purposes only and simulate the experience of buying or selling securities. Any orders placed through practice accounts do not represent actual instructions to buy or sell a security on an exchange. Please refer to your official account statement for information and details on your actual account holdings."
+"RBC Direct Investing does not provide investment advice or recommendations. RBC Direct Investing does not monitor or track your goals or their performance. Clients are responsible for the accuracy of their own goals and to monitor them regularly. RBC Direct Investing does not guarantee the accuracy or completeness of the information being presented."
+"Account Activity displays up to 15 months of transactions that have occurred on your account."
+"Your account activity is based on your account balances as of the dates indicated, and also includes activity conducted in your practice account(s) if applicable. Activity conducted in a practice account does not represent an actual transaction. Please refer to your official account statement for historical information and details on your actual account holdings."

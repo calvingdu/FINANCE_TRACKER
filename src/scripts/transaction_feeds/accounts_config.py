@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 accounts_config = {
-    "amex_config": {
+    "amex": {
         "account_name": "AMEX",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
@@ -13,7 +13,7 @@ accounts_config = {
             "na2": "float64",
         },
     },
-    "bmo_cc_config": {
+    "bmo_cc": {
         "account_name": "BMOcc",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
@@ -25,7 +25,7 @@ accounts_config = {
             "description": "string",
         },
     },
-    "bmo_checking_config": {
+    "bmo_checking": {
         "account_name": "BMOchecking",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
@@ -36,8 +36,8 @@ accounts_config = {
             "description": "string",
         },
     },
-    "rbc_checking_config": {
-        "account_name": "RBCchecking",
+    "rbc": {
+        "account_name": "RBC",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "account_type": "string",
@@ -51,7 +51,24 @@ accounts_config = {
             "USD$": "float64",
         },
     },
-    " cibc_checking_config": {
+    "rbc_direct_investing": {
+        "account_name": "RBC_DIRECT_INVESTING",
+        "expectation_suite_name": "transaction_suite",
+        "data_fields": {
+            "Date": "string",
+            "Activity": "string",
+            "Symbol": "string",
+            "Symbol Description": "string",
+            "Quantity": "float64",
+            "Price": "float64",
+            "Settlement Date": "string",
+            "Account": "string",
+            "Value": "float64",
+            "Currency": "string",
+            "Description": "string",
+        },
+    },
+    "cibc_checking": {
         "account_name": "CIBCchecking",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
@@ -61,7 +78,7 @@ accounts_config = {
             "credit_amount": "float64",
         },
     },
-    "cibc_cc_config": {
+    "cibc_cc": {
         "account_name": "CIBCcc",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {

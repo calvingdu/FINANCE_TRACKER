@@ -40,6 +40,7 @@ def execute():
 
 def etl_execute(directory, file, config, transform_func):
     try:
+        print(f"File: {directory+file} \nStatus: Start")
         account_name = config["account_name"]
         expectation_suite_name = config["expectation_suite_name"]
 
@@ -60,7 +61,7 @@ def etl_execute(directory, file, config, transform_func):
 
         # STAGE 6: Load Data Into DB
         mongodb_hook = MongoDBHook()
-        mongodb_hook.insert_df(df=df, account_name=account_name)
+        result = mongodb_hook.insert_df(df=df, account=account_name)
 
         # STAGE 7: Move Data into Processed
         file_name = change_transaction_file_name(
@@ -71,6 +72,7 @@ def etl_execute(directory, file, config, transform_func):
         )
 
         move_file(file_name=file_name, old_directory=directory, new_suffix="processed/")
+        print(f"File: {file_name} \nStatus: Finish \nRows Inserted: {result}")
     except Exception as e:
         print(f"Error: {e}")
 
