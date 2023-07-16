@@ -42,4 +42,4 @@ jobs:
         ls -la
         export PYTHONPATH="${PYTHONPATH}:${GITHUB_WORKSPACE}"
         export PYTHON_ENV=develop
-        pytest
+        pytest --config=pytest_actions.ini
