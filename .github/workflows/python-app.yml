@@ -1,9 +1,12 @@
-name: Calvin's Python App
+name: CI
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
+env:
+  PYTHON_ENV: develop
 
 permissions:
   contents: read
