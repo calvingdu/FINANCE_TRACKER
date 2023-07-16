@@ -26,11 +26,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run linter
       run: |
-        pip install flake8
         flake8
     - name: Format code
       run: |
-        pip install black
         black .
     - name: Test with pytest
       run: |
