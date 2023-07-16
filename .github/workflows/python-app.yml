@@ -7,6 +7,7 @@ on:
 
 env:
   PYTHON_ENV: develop
+  PYTHON_PATH: .
 
 permissions:
   contents: read
