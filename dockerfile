@@ -1,6 +1,14 @@
 FROM python:3.9
+
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-CMD ["python", "your_script.py"]
+
+COPY . /app
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+ENV PYTHON_ENV=develop
+
+EXPOSE 8000
+
+CMD [ "python", "app.py" ]
