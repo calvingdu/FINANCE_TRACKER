@@ -7,7 +7,7 @@ This project is a data pipeline designed to handle transaction data from various
 
 # Usage
 ## Copy code
-git clone 
+git clone https://github.com/calvingdu/Transactions-Pipeline.git
 ## Install the required dependencies:
 pip install -r requirements.txt
 
