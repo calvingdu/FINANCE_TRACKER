@@ -13,6 +13,7 @@ pip install -r requirements.txt
 
 ## Configure the necessary environment variable
 export PYTHONPATH=.
+
 export PYTHON_ENV=develop
 
 
