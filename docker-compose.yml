@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data  # Mount the 'data' directory to the container
+    ports:
+      - 8000:8000  # Map the container port to the host port
+    depends_on:
+      - mongo  # Specify any other services your application depends on
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./mongo-data:/data/db  # Mount the 'mongo-data' directory to persist MongoDB data
+    ports:
+      - 27018:27017  # Map the container port to the host port

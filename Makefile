@@ -13,5 +13,12 @@ test:
 	@echo --- Testing --- ;\
 
 	pytest ${TEST_SUBDIR}
-
 	@echo --- Testing Completed ---
+
+# DOCKER
+
+build:
+	docker-compose up --build
+
+up:
+	docker-compose up -d
