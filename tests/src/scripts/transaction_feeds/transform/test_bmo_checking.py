@@ -14,7 +14,7 @@ transform_data_directory = config.get("transform_data_directory")
 expected_dataframe = pd.DataFrame(
     {
         "account": pd.Series(
-            ["BMOchecking", "BMOchecking", "BMOchecking"],
+            ["BMO_CHECKING", "BMO_CHECKING", "BMO_CHECKING"],
             dtype="object",
         ),
         "date": pd.Series(

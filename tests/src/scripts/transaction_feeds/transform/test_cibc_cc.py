@@ -13,7 +13,7 @@ transform_data_directory = config.get("transform_data_directory")
 
 expected_dataframe = pd.DataFrame(
     {
-        "account": pd.Series(["CIBCcc", "CIBCcc", "CIBCcc"], dtype="object"),
+        "account": pd.Series(["CIBC_CC", "CIBC_CC", "CIBC_CC"], dtype="object"),
         "date": pd.Series(
             [
                 Timestamp("2023-02-16 00:00:00"),

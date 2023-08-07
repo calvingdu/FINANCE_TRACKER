@@ -25,7 +25,7 @@ expected_dataframe = pd.DataFrame(
             ],
             dtype="datetime64[ns]",
         ),
-        "amount": pd.Series([123.45, -52.92, 1000.12], dtype="float64"),
+        "amount": pd.Series([-123.45, 52.92, -1000.12], dtype="float64"),
         "description": pd.Series(
             ["STAFF - PAYROLL", "Email Trfs", "STAFF - PAYROLL"],
             dtype="object",

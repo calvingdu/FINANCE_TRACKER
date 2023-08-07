@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 from pandas import Timestamp
-from plugins.categorization_model.dsci_src.feature_engineering.transaction_matching_features import (
+
+from src.plugins.categorization_model.dsci_src.feature_engineering.transaction_matching_features import (
     transaction_matching,
 )
 
