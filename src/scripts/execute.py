@@ -74,6 +74,7 @@ def etl_execute(directory, file, config, transform_func):
         email_sender.send_dq_notification_email(parameters=dq_check_parameters)
 
     # STAGE 5: Categorize Data
+    # df = add_category(df)
 
     # STAGE 6: Load Data Into DB
     mongodb_hook = MongoDBHook()

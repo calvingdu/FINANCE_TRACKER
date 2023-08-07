@@ -24,6 +24,18 @@
             "meta": {}
         },
         {
+            "expectation_type": "expect_compound_columns_to_be_unique",
+            "kwargs": {
+                "column_list": [
+                    "account",
+                    "date",
+                    "amount",
+                    "description"
+                ]
+            },
+            "meta": {}
+        },
+        {
             "expectation_type": "expect_column_values_to_be_between",
             "kwargs": {
                 "column": "amount",
@@ -33,37 +45,17 @@
             "meta": {}
         },
         {
+            "expectation_type": "expect_column_values_to_not_contain_special_characters",
+            "kwargs": {
+                "column": "account",
+                "allowed_characters": ["_"]
+            },
+            "meta": {}
+        },
+        {
             "expectation_type": "expect_column_values_to_not_be_null",
             "kwargs": {
                 "column": "account"
-            },
-            "meta": {}
-        },
-        {
-            "expectation_type": "expect_column_values_to_not_be_null",
-            "kwargs": {
-                "column": "date"
-            },
-            "meta": {}
-        },
-        {
-            "expectation_type": "expect_column_values_to_not_be_null",
-            "kwargs": {
-                "column": "amount"
-            },
-            "meta": {}
-        },
-        {
-            "expectation_type": "expect_column_values_to_not_be_null",
-            "kwargs": {
-                "column": "description"
-            },
-            "meta": {}
-        },
-        {
-            "expectation_type": "expect_column_values_to_not_be_null",
-            "kwargs": {
-                "column": "processed_date"
             },
             "meta": {}
         },
@@ -76,10 +68,24 @@
             "meta": {}
         },
         {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "date"
+            },
+            "meta": {}
+        },
+        {
             "expectation_type": "expect_column_values_to_be_of_type",
             "kwargs": {
                 "column": "date",
                 "type_": "datetime64"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "amount"
             },
             "meta": {}
         },
@@ -92,10 +98,24 @@
             "meta": {}
         },
         {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "description"
+            },
+            "meta": {}
+        },
+        {
             "expectation_type": "expect_column_values_to_be_of_type",
             "kwargs": {
                 "column": "description",
                 "type_": "str"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "processed_date"
             },
             "meta": {}
         },

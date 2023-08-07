@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 import pandas as pd
 
 
@@ -17,5 +19,7 @@ def common_preload_transform(df):
     # (without this transactions that happen after a processing date would be deleted by insert_df function)
     today = pd.Timestamp.today().strftime("%Y-%m-%d")
     df = df[df["date"] < today]
+
+    df["description"] = df["description"].apply(lambda x: re.sub(r"\s+", " ", x))
 
     return df

@@ -36,6 +36,7 @@ def transform_data(df: pd.DataFrame, account_name: str) -> pd.DataFrame:
     df["account"] = df["account"] + "_" + df["account_type"]
     df["date"] = pd.to_datetime(df["date"], format="%m/%d/%Y")
     df["amount"] = df["amount"].astype(float)
+    df["amount"] = df["amount"] * -1
     df.drop(
         [
             "account_type",

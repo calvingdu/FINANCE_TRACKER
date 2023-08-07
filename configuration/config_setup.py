@@ -11,7 +11,6 @@ sys.path.insert(0, ".")
 configuration_directory = Path(__file__).parents[0]
 
 if os.environ.get("PYTHON_ENV"):
-    print(configuration_directory)
     print(f"{os.environ.get('PYTHON_ENV')}.env")
     load_dotenv(f"{configuration_directory}/{os.environ.get('PYTHON_ENV')}.env")
 else:

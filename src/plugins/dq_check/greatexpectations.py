@@ -2,8 +2,13 @@ from __future__ import annotations
 
 import great_expectations as gx
 
+from src.great_expectations.plugins.expectations.expect_column_values_to_not_contain_special_characters import (
+    ExpectColumnValuesToNotContainSpecialCharacters,
+)
 from src.plugins.dq_check.gx_config import get_checkpoint_config
 from src.plugins.dq_check.gx_config import get_data_context_config
+
+ExpectColumnValuesToNotContainSpecialCharacters
 
 
 def gx_execution(

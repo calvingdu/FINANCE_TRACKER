@@ -15,6 +15,3 @@ pip install -r requirements.txt
 export PYTHONPATH=.
 
 export PYTHON_ENV=develop
-
-
-

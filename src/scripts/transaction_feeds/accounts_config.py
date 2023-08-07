@@ -14,7 +14,7 @@ accounts_config = {
         },
     },
     "bmo_cc": {
-        "account_name": "BMOcc",
+        "account_name": "BMO_MASTERCARD",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "index": "int64",
@@ -26,7 +26,7 @@ accounts_config = {
         },
     },
     "bmo_checking": {
-        "account_name": "BMOchecking",
+        "account_name": "BMO_CHECKING",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "bank_card": "string",
@@ -69,7 +69,7 @@ accounts_config = {
         },
     },
     "cibc_checking": {
-        "account_name": "CIBCchecking",
+        "account_name": "CIBC_CHECKING",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "date": "string",
@@ -79,7 +79,7 @@ accounts_config = {
         },
     },
     "cibc_cc": {
-        "account_name": "CIBCcc",
+        "account_name": "CIBC_CC",
         "expectation_suite_name": "transaction_suite",
         "data_fields": {
             "date": "string",
