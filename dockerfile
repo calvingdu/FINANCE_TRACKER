@@ -1,14 +1,13 @@
 FROM python:3.9
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY . /app
+COPY . .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 ENV PYTHON_ENV=develop
 
-EXPOSE 8000
 
-CMD [ "python", "app.py" ]
+CMD [ "python", "./execute.py"]

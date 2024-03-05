@@ -1,19 +1,21 @@
-version: '3'
+version: '3.8'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     volumes:
-      - ./data:/app/data  # Mount the 'data' directory to the container
-    ports:
-      - 8000:8000  # Map the container port to the host port
+      - ../Statement_Data:/data
     depends_on:
-      - mongo  # Specify any other services your application depends on
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/test_database
 
   mongo:
-    image: mongo
+    image: mongo:latest
     volumes:
-      - ./mongo-data:/data/db  # Mount the 'mongo-data' directory to persist MongoDB data
-    ports:
-      - 27018:27017  # Map the container port to the host port
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+
+volumes:
+  mongo-data:
