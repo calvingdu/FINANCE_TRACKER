@@ -42,58 +42,58 @@ def execute():
 
 
 def etl_execute(directory, file, config, transform_func):
-    # try:
-    print(f"File: {directory+file} \nStatus: Start")
-    account_name = config["account_name"]
-    expectation_suite_name = config["expectation_suite_name"]
+    try:
+        print(f"File: {directory+file} \nStatus: Start")
+        account_name = config["account_name"]
+        expectation_suite_name = config["expectation_suite_name"]
 
-    # STAGE 3: Transform Data
-    df = transform_func(file_name=file, file_path=directory, schema=config)
-    df = common_preload_transform(df)
+        # STAGE 3: Transform Data
+        df = transform_func(file_name=file, file_path=directory, schema=config)
+        df = common_preload_transform(df)
 
-    # STAGE 4: DQ Check Data
-    gx_result = gx_dq_check(
-        df_to_validate=df,
-        data_asset_name=account_name,
-        expectation_suite_name=expectation_suite_name,
-    )
+        # STAGE 4: DQ Check Data
+        gx_result = gx_dq_check(
+            df_to_validate=df,
+            data_asset_name=account_name,
+            expectation_suite_name=expectation_suite_name,
+        )
 
-    print_gx_result(directory=directory, file=file, gx_result=gx_result)
+        print_gx_result(directory=directory, file=file, gx_result=gx_result)
 
-    # Stage 4.5: Send an email if GX fails
-    email_sender = EmailSender()
-    if not gx_result["success"]:
-        dq_check_parameters = {
-            "asset_name": account_name,
-            "file": directory + file,
-            "error_exceptions": gx_result["error_message"],
-            "data_docs_site": gx_result["data_docs_site"],
-            "timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
-        }
+        # Stage 4.5: Send an email if GX fails
+        email_sender = EmailSender()
+        if not gx_result["success"]:
+            dq_check_parameters = {
+                "asset_name": account_name,
+                "file": directory + file,
+                "error_exceptions": gx_result["error_message"],
+                "data_docs_site": gx_result["data_docs_site"],
+                "timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
+            }
 
-        email_sender.send_dq_notification_email(parameters=dq_check_parameters)
+            email_sender.send_dq_notification_email(parameters=dq_check_parameters)
 
-    # STAGE 5: Categorize Data
-    # df = add_category(df)
+        # STAGE 5: Categorize Data
+        # df = add_category(df)
 
-    # STAGE 6: Load Data Into DB
-    mongodb_hook = MongoDBHook()
-    result = mongodb_hook.insert_df(df=df, account=account_name)
+        # STAGE 6: Load Data Into DB
+        mongodb_hook = MongoDBHook()
+        result = mongodb_hook.insert_df(df=df, account=account_name)
 
-    # STAGE 7: Move Data into Processed
-    file_name = change_transaction_file_name(
-        directory=directory,
-        old_name=file,
-        df=df,
-        bank_acount=account_name,
-    )
+        # STAGE 7: Move Data into Processed
+        file_name = change_transaction_file_name(
+            directory=directory,
+            old_name=file,
+            df=df,
+            bank_acount=account_name,
+        )
 
-    move_file(file_name=file_name, old_directory=directory, new_suffix="processed/")
-    print(f"File: {file_name} \nStatus: Finish \nRows Inserted: {result}")
+        move_file(file_name=file_name, old_directory=directory, new_suffix="processed/")
+        print(f"File: {file_name} \nStatus: Finish \nRows Inserted: {result}")
 
-
-# except Exception as e:
-#     print(f"Error: {e}")
+    except Exception as e:
+        print(f"Error on file: {directory+file}")
+        print(f"Error: {e}")
 
 
 execute()
