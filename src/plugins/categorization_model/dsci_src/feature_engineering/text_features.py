@@ -25,7 +25,7 @@ def add_text_features(
     df["description_length"] = df[desc_column].apply(len)
     df["num_tokens"] = df[desc_column].apply(lambda x: len(re.findall(r"\w+", x)))
 
-    add_contains_keyword_column()
+    # add_contains_keyword_column()
 
     return df
 

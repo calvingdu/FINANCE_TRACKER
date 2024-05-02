@@ -1,0 +1,127 @@
+,account,description,amount,pred_category,correct_category
+497,BMO_MASTERCARD,ADIDAS CA 855-8234327 ON,-140.0,income_reimbursement,income_reimbursement
+244,BMO_MASTERCARD,291 SPADINA AVE TORONTO ON,60.0,food_drink,food_drink
+552,CIBC_CC,"FARM TO TABLE VANCOUVER, BC",9.26,food_drink,food_drink
+213,BMO_MASTERCARD,291 SPADINA AVE TORONTO ON,80.0,food_drink,food_drink
+549,CIBC_CC,"STARBUCKS 04574 VANCOUVER, BC",2.54,food_drink,food_drink
+506,CIBC_CC,"TONTON SUSHI VANCOUVER, BC",64.69,food_drink,food_drink
+626,BMO_MASTERCARD,UBER CANADA/UBERTRIP TORONTO ON,15.79,food_drink,transportation
+77,BMO_CHECKING,UNIVERSITY OF B BUS/ENT,1337.71,education,education
+531,CIBC_CHECKING,Internet Banking INTERNET TRANSFER 000000120069,185.75,etransfer_out,etransfer_out
+145,BMO_CHECKING,AB STUDENT AID MSP/DIV,-4060.0,etransfer_in,income_government
+268,AMEX,TWILIGHT CAFE 001 TORONTO,10.17,food_drink,food_drink
+31,AMEX,UBER EATS TORONTO,28.05,food_drink,food_drink
+55,RBC_Visa,DAINTIES MACARON TORONTO ON,3.67,food_drink,food_drink
+90,AMEX,STARBUCKS 800-782-72 800-782-7282,15.0,food_drink,food_drink
+414,BMO_MASTERCARD,REAL FRUIT BUBBLE TEA TORONTO ON,6.2,food_drink,food_drink
+76,BMO_CHECKING,UNIVERSITY OF B BUS/ENT,1337.71,education,education
+2,BMO_CHECKING, TF 0005191230208404641,101.02,food_drink,food_drink
+479,CIBC_CC,FLAIR DIRECT0000000000123 KELOWNA,228.92,food_drink,transportation
+188,AMEX,ROLLTATION 10 DUNDAS TO TORONTO,14.45,food_drink,food_drink
+636,CIBC_CC,"SLEIGHT OF HAND TATTOO VANCOUVER, BC",193.2,food_drink,shopping
+131,AMEX,AMATO GYROS 212057642 TORONTO,10.16,food_drink,food_drink
+148,AMEX,KOODO MOBILE PAC KOODO EDMONTON,43.0,food_drink,telecommunication
+49,AMEX,TST-PAI NORTHERN THAI TORONTO,32.38,food_drink,food_drink
+650,CIBC_CC,"STARBUCKS 04574 VANCOUVER, BC",6.32,food_drink,food_drink
+477,BMO_MASTERCARD,DOORDASH*CHICK-FIL-A DOWNTOWN TOROON,17.2,food_drink,food_drink
+110,AMEX,HARVEST GREEN Toronto,12.49,food_drink,food_drink
+158,AMEX,BANG BANG ICE CREAM & B Toronto,5.51,food_drink,food_drink
+604,CIBC_CC,"ORANGE JULIUS #65009 CALGARY, AB",6.71,shopping,food_drink
+649,CIBC_CC,PAYMENT THANK YOU/PAIEMEN T MERCI,-150.67,credit_card_payment,credit_card_payment
+403,AMEX,METRO 759 TORONTO,51.35,groceries,groceries
+163,AMEX,OSMOW'S SHAWARMA 212203 TORONTO,13.55,food_drink,food_drink
+264,AMEX,PAYMENT RECEIVED - THANK YOU,-302.76,credit_card_payment,credit_card_payment
+256,AMEX,DAIRY QUEEN #12232 TORO TORONTO,4.62,food_drink,food_drink
+289,AMEX,MCDONALD'S 40437 TORONTO,3.14,food_drink,food_drink
+132,AMEX,BAKE CODE CROISSANTERIE TORONTO,6.22,food_drink,food_drink
+331,RBC_Chequing,STAFF - PAYROLL,-1592.44,income_wages,income_wages
+453,BMO_MASTERCARD,TORONTO PSYCHOLOGY CLI TORONTO ON,180.0,food_drink,food_drink
+640,CIBC_CC,"PEARL FEVER TEA HOUSE VANCOUVER, BC",7.82,food_drink,food_drink
+316,AMEX,METRO 759 TORONTO,44.26,food_drink,groceries
+318,AMEX,CHICK-FIL-A YONGE AND B TORONTO,14.74,food_drink,food_drink
+357,RBC_Savings,DEPOSIT INTEREST,-0.2,etransfer_in,income_investments
+39,RBC_Chequing,E-TRF AUTODEPOSIT,-47.5,etransfer_in,etransfer_in
+86,BMO_CHECKING,AMEX FTD/RII,1301.95,credit_card_payment,credit_card_payment
+338,BMO_CHECKING, 4 - 382 YONGE,30.0,food_drink,other
+417,AMEX,LULULEMONCOM 877-263-9300,82.32,food_drink,shopping
+209,BMO_CHECKING,XE LUA VIETNAME,20.25,food_drink,food_drink
+473,BMO_MASTERCARD,UBC EPAYMENT 604-822-2008 BC,1050.0,food_drink,education
+577,CIBC_CC,"CHOICES YALETOWN # 907 VANCOUVER, BC",6.44,food_drink,food_drink
+78,AMEX,MANCHU WOK # 2742 20204 TORONTO,16.95,food_drink,food_drink
+350,RBC_Chequing,E-TRF AUTODEPOSIT,-1479.49,credit_card_payment,etransfer_in
+176,AMEX,TIM HORTONS #2387 TORONTO,9.92,food_drink,food_drink
+286,AMEX,8MILE DETROIT STYLE PIZ Toronto,21.47,food_drink,food_drink
+10,AMEX,BUTTER BAKER 001 TORONTO,7.9,food_drink,food_drink
+261,BMO_MASTERCARD,BALZAC'S COFFEE - RYER TORONTO ON,7.63,food_drink,food_drink
+470,BMO_MASTERCARD,REAL FRUIT BUBBLE TEA TORONTO ON,5.07,food_drink,food_drink
+174,AMEX,MIZZICA GELATERIA & CAF Toronto,7.34,food_drink,food_drink
+135,AMEX,MCDONALD'S 29051 TORONTO,9.81,food_drink,food_drink
+456,BMO_MASTERCARD,TRSF FROM/DE ACCT/CPT 2503-XXXX-940,-223.06,credit_card_payment,transfer_in
+211,BMO_CHECKING,XE LUA VIETNAME,20.25,food_drink,food_drink
+30,AMEX,MEMBERSHIP FEE INSTALLMENT,12.99,food_drink,bank_fees
+592,BMO_MASTERCARD,ACME INN ACME AB,13.57,food_drink,food_drink
+494,CIBC_CC,"CHOICES YALETOWN # 907 VANCOUVER, BC",9.61,food_drink,food_drink
+341,AMEX,PATTIES EXPRESS 2121150 TORONTO,2.4,food_drink,food_drink
+41,RBC_Chequing,Email Trfs,7.6,etransfer_out,etransfer_out
+595,CIBC_CC,PAYMENT THANK YOU/PAIEMEN T MERCI,-746.28,credit_card_payment,credit_card_payment
+265,BMO_MASTERCARD,TRSF FROM/DE ACCT/CPT 2503-XXXX-940,-61.99,etransfer_in,etransfer_in
+56,AMEX,GOOGLE *YOUTUBEPREMIUM G.CO/HELPPAY#,7.34,food_drink,subscriptions
+404,AMEX,SHOPPERS DRUG MART #140 TORONTO,7.9,food_drink,personal_care
+539,CIBC_CC,"SIMONS WEB QUEBEC, QC",56.53,food_drink,food_drink
+396,AMEX,LA DIPERIE 210598076 TORONTO,7.84,food_drink,food_drink
+155,AMEX,TIM HORTONS #2387 TORONTO,9.92,food_drink,food_drink
+24,RBC_Chequing,Email Trfs,30.0,etransfer_out,etransfer_out
+82,RBC_Chequing,MISC PAYMENT,867.88,credit_card_payment,other
+364,AMEX,SHOPPERS DRUG MART #140 TORONTO,5.29,personal_care,personal_care
+215,AMEX,PUSATERI'S YONGE ST. TORONTO,3.96,food_drink,food_drink
+615,CIBC_CC,"WINNERS 267 CALGARY, AB",24.13,food_drink,clothing_and_accessories
+487,CIBC_CC,"MING WO VANCOUVER, BC",14.5,food_drink,food_drink
+70,RBC_Chequing,E-TRF AUTODEPOSIT,-13.49,etransfer_in,etransfer_in
+363,AMEX,AMZN MKTP CA*HM1RK5VS0 WWW.AMAZON.CA,67.19,food_drink,shopping
+633,BMO_MASTERCARD,THE DELLY VANCOUVER BC,10.97,food_drink,food_drink
+281,BMO_CHECKING, TF 0005191230208404641,303.96,credit_card_payment,other
+60,RBC_Chequing,E-TRF AUTODEPOSIT,-13.49,etransfer_in,etransfer_in
+405,BMO_MASTERCARD,INDIAN BIRIYANI HOUSE TORONTO ON,18.63,food_drink,food_drink
+412,BMO_MASTERCARD,HMART - DUNDAS TORONTO ON,28.44,food_drink,food_drink
+210,BMO_CHECKING,PERFORMANCE PLAN,16.95,food_drink,bank_fees
+616,CIBC_CC,"DOLLARAMA # 724 CALGARY, AB",9.71,food_drink,shopping
+165,BMO_MASTERCARD,DAINTIES MACARON TORONTO ON,8.19,food_drink,food_drink
+247,BMO_CHECKING, TF 0005191230208404641,61.99,credit_card_payment,credit_card_payment
+275,AMEX,UBER EATS TORONTO,30.45,food_drink,food_drink
+257,AMEX,EXOTIC BURGER Toronto,10.16,food_drink,food_drink
+290,AMEX,METRO 759 TORONTO,42.92,food_drink,groceries
+457,RBC_Chequing,Email Trfs,1592.44,etransfer_out,etransfer_out
+29,AMEX,TWILIGHT CAFE 001 TORONTO,10.17,food_drink,food_drink
+192,AMEX,RW & CO. #2226 TORONTO,-134.28,income_reimbursement,income_reimbursement
+101,AMEX,GOONEYS SANDWICH WORKS OTTAWA,15.19,food_drink,food_drink
+304,AMEX,TIM HORTONS #2387 TORONTO,9.92,food_drink,food_drink
+228,BMO_CHECKING,AMEX FTD/RII,302.76,credit_card_payment,credit_card_payment
+278,AMEX,SHOPPERS DRUG MART #082 TORONTO,25.06,food_drink,food_drink
+298,AMEX,TWILIGHT CAFE 001 TORONTO,6.78,food_drink,food_drink
+274,AMEX,GYMSHARK SOLIHULL,-75.94,income_government,income_reimbursement
+204,RBC_Chequing,Email Trfs,1475.0,etransfer_out,housing
+429,AMEX,TIM HORTONS #2387 TORONTO,9.92,food_drink,food_drink
+452,BMO_MASTERCARD,INDIAN BIRIYANI HOUSE TORONTO ON,15.52,food_drink,food_drink
+612,BMO_MASTERCARD,BEEF STEAK RESTAURANT BEISEKER AB,15.99,food_drink,food_drink
+299,BMO_MASTERCARD,TRSF FROM/DE ACCT/CPT 2503-XXXX-940,-303.96,etransfer_in,etransfer_in
+81,RBC_Chequing,Withdrawal,140.0,etransfer_out,other
+227,BMO_CHECKING,AMEX FTD/RII,302.76,credit_card_payment,credit_card_payment
+109,AMEX,DEACON BRODIES PUB INC. OTTAWA,48.07,food_drink,food_drink
+248,BMO_CHECKING,NEW HONG FATT B,16.17,food_drink,food_drink
+425,BMO_MASTERCARD,N15 STUDIO TORONTO ON,59.77,food_drink,personal_care
+63,RBC_Visa,BANH MI BOYS TORONTO ON,5.65,food_drink,food_drink
+547,CIBC_CC,"FARM TO TABLE VANCOUVER, BC",3.49,food_drink,groceries
+72,RBC_Chequing,STAFF - PAYROLL,-1592.44,income_wages,income_wages
+574,BMO_MASTERCARD,REAL FRUIT BUBBLE TEA TORONTO ON,7.9,food_drink,food_drink
+284,BMO_CHECKING, TF 0005191230208404641,303.96,credit_card_payment,credit_card_payment
+118,AMEX,FANTUAN DELIVERY BURNABY,17.75,food_drink,food_drink
+600,BMO_MASTERCARD,TRSF FROM/DE ACCT/CPT 2503-XXXX-940,-419.24,credit_card_payment,transfer_in
+291,RBC_Chequing,Email Trfs,6.04,etransfer_out,etransfer_out
+380,BMO_CHECKING,INTERAC ETRNSFR SENT JOANNA YIP 202311501154B6F18,88.08,etransfer_out,etransfer_out
+212,RBC_Chequing,E-TRF AUTODEPOSIT,-1000.0,etransfer_in,etransfer_in
+140,BMO_CHECKING, TF 0005191230208404641,359.3,credit_card_payment,credit_card_payment
+388,BMO_CHECKING,NEW HONG FATT B,46.44,food_drink,food_drink
+322,BMO_MASTERCARD,EGG CLUB WELLESLEY TORONTO ON,9.71,food_drink,food_drink
+218,RBC_Chequing,Email Trfs Can,20.0,etransfer_out,etransfer_out
+462,BMO_MASTERCARD,DOMINOS PIZZA #39032 604-733-2118 BC,100.14,food_drink,food_drink
+511,CIBC_CC,"CHOO TEA BURNABY, BC",8.06,food_drink,food_drink

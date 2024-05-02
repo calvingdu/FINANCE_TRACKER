@@ -5,6 +5,7 @@ import os
 import pandas as pd
 
 from configuration.config_setup import config
+from src.plugins.categorization_model.categorization import add_category
 from src.plugins.dq_check.gx_dq_check import gx_dq_check
 from src.plugins.dq_check.gx_results_processor import print_gx_result
 from src.plugins.email.email_sender import EmailSender
@@ -74,7 +75,7 @@ def etl_execute(directory, file, config, transform_func):
             email_sender.send_dq_notification_email(parameters=dq_check_parameters)
 
         # STAGE 5: Categorize Data
-        # df = add_category(df)
+        df = add_category(df)
 
         # STAGE 6: Load Data Into DB
         mongodb_hook = MongoDBHook()
