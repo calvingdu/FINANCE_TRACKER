@@ -15,6 +15,7 @@ pip3 install -e '.[dev]'
 
 ## Configure the necessary environment variable
 export PYTHONPATH=.
+
 export PYTHON_ENV=develop
 
 ## Prefect
