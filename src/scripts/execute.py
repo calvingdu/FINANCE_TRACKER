@@ -95,6 +95,3 @@ def etl_execute(directory, file, config, transform_func):
     except Exception as e:
         print(f"Error on file: {directory+file}")
         print(f"Error: {e}")
-
-
-execute()

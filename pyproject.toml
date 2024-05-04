@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "finance-tracker"
+version = "0.1.0"
+description = "A pipeline that processes bank transaction data"
+authors = ["Calvin <calvingdu@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+python-dotenv = "0.15.0"
+pandas = "1.4.2"
+pymongo = "4.3.3"
+great-expectations = "0.17.0"
+pre-commit = "3.3.3"
+pytest = "7.4.0"
+black = "23.7.0"
+flake8 = "6.0.0"
+email = "6.0.0a1"
+nltk = "3.7"
+scikit-learn = "1.4.2"
+sqlalchemy = "2.0.20"
+prefect = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+execute = "src.scripts.main"

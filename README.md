@@ -8,9 +8,15 @@ This project is a data pipeline designed to handle transaction data from various
 # Usage
 ## Copy code
 git clone https://github.com/calvingdu/Transactions-Pipeline.git
+
 ## Install the required dependencies:
-pip install -r requirements.txt
+poetry install
+pip3 install -e '.[dev]'
 
 ## Configure the necessary environment variable
 export PYTHONPATH=.
 export PYTHON_ENV=develop
+
+## Prefect
+prefect config set PREFECT_API_URL="http://127.0.0.1:4200/api"
+prefect server start
