@@ -37,8 +37,7 @@ expected_dataframe = pd.DataFrame(
 def test_transform_cibc_checking():
     schema = accounts_config["cibc_checking"]
     df = transform_dataset(
-        file_path=transform_data_directory,
-        file_name="CIBCCHECKING_20200430_20230216.csv",
+        file=transform_data_directory + "CIBCCHECKING_20200430_20230216.csv",
         schema=schema,
     )
 

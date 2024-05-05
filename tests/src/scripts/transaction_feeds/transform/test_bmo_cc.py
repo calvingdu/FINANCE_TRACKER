@@ -41,8 +41,7 @@ expected_dataframe = pd.DataFrame(
 def test_transform_bmo_cc():
     schema = accounts_config["bmo_cc"]
     df = transform_dataset(
-        file_path=transform_data_directory,
-        file_name="BMOCC_20221221_20230320.csv",
+        file=transform_data_directory + "BMOCC_20221221_20230320.csv",
         schema=schema,
     )
 

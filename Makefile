@@ -1,5 +1,5 @@
 init:
-	pip3 install -r requirements.txt
+	poetry install
 	pre-commit install
 
 lint-fix:
@@ -16,7 +16,6 @@ test:
 	@echo --- Testing Completed ---
 
 # DOCKER
-
 build:
 	docker-compose up --build
 

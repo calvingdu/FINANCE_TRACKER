@@ -40,8 +40,7 @@ expected_dataframe = pd.DataFrame(
 def test_transform_amex():
     schema = accounts_config["amex"]
     df = transform_dataset(
-        file_path=transform_data_directory,
-        file_name="AMEX_20221216_20230414.csv",
+        file=transform_data_directory + "AMEX_20221216_20230414.csv",
         schema=schema,
     )
 

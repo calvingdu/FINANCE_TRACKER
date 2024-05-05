@@ -34,8 +34,7 @@ expected_dataframe = pd.DataFrame(
 def test_transform_bmo_checking():
     schema = accounts_config["bmo_checking"]
     df = transform_dataset(
-        file_path=transform_data_directory,
-        file_name="BMOCHECKING_20221128_20230209.csv",
+        file=transform_data_directory + "BMOCHECKING_20221128_20230209.csv",
         schema=schema,
     )
 

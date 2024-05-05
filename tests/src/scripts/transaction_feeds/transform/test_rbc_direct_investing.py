@@ -41,8 +41,7 @@ expected_dataframe = pd.DataFrame(
 def test_transform_rbc_direct_investing():
     schema = accounts_config["rbc_direct_investing"]
     df = transform_dataset(
-        file_path=transform_data_directory,
-        file_name="RBC_DIRECT_INVESTING_20230501_20230705.csv",
+        file=transform_data_directory + "RBC_DIRECT_INVESTING_20230501_20230705.csv",
         schema=schema,
     )
 
