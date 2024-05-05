@@ -7,11 +7,11 @@ import pandas as pd
 from src.scripts.helper.etl_data import common_transform
 
 
-def transform_dataset(file_name: str, file_path: str, schema: dict) -> pd.DataFrame:
+def transform_dataset(file: str, schema: dict) -> pd.DataFrame:
     column_names = schema["data_fields"].keys()
     account_name = schema["account_name"]
 
-    with open(file_path + file_name) as csv_file:
+    with open(file) as csv_file:
         csv_reader = csv.reader(csv_file)
 
         rows: list = [row for row in csv_reader if any(field.strip() for field in row)]

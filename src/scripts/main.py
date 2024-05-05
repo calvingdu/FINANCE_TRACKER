@@ -4,8 +4,8 @@ import os
 
 import pandas as pd
 from prefect import flow
+from prefect import get_run_logger
 from prefect import task
-from prefect.filesystems import LocalFileSystem
 from prefect.task_runners import SequentialTaskRunner
 
 from configuration.config_setup import config
@@ -23,8 +23,13 @@ from src.scripts.helper.iterate_datasets import move_file
 config_directory = config.get("bank_directory")
 
 
-@task
-def get_files_list(directory: str, file_name_prefix: str, file_type: str) -> list[str]:
+@task(name="Get Files List")
+def get_files_list(
+    directory: str,
+    file_name_prefix: str,
+    file_type: str,
+    **kwargs,
+) -> list[str]:
     return get_directory_files(
         directory=directory,
         file_name_prefix=file_name_prefix,
@@ -32,97 +37,113 @@ def get_files_list(directory: str, file_name_prefix: str, file_type: str) -> lis
     )
 
 
-@task
-def identify_bank_data(file_paths: list[str]) -> dict:
-    bank_data = {}
-    for file_string in file_paths:
+@task(name="Identification")
+def identify_bank_data(file_paths: list[str], **kwargs) -> dict:
+    for file_string in file_paths:  # make this branch off
         directory, file = os.path.split(file_string)
         if not directory.endswith("/"):
             directory += "/"
         config, transform_func = identify_accounts(directory=directory, file=file)
-        bank_data[file_string] = {"config": config, "transform_func": transform_func}
+        bank_data = {
+            "config": config,
+            "transform_func": transform_func,
+            "directory": directory,
+            "file": file,
+        }
     return bank_data
 
 
-@task
-def transform_data(file_data: dict) -> dict:
-    transformed_data = {}
-    for file_path, data in file_data.items():
-        config = data["config"]
-        transform_func = data["transform_func"]
-        print(file_path)
-        df = transform_func(file=LocalFileSystem(basepath=file_path), schema=config)
-        df = common_preload_transform(df)
-        transformed_data[file_path] = df
-    return transformed_data
+@task()
+def transform_data(file_path, bank_data, **kwargs) -> pd.DataFrame:
+    config = bank_data["config"]
+    transform_func = bank_data["transform_func"]
+    df = transform_func(file_path, schema=config)
+    df = common_preload_transform(df)
+    return df
+
+
+@task(tags=["dq_check"])
+def dq_check(df, bank_data, **kwargs) -> dict:
+    config = bank_data["config"]
+    account_name = config["account_name"]
+    expectation_suite_name = config["expectation_suite_name"]
+    gx_result = gx_dq_check(
+        df_to_validate=df,
+        data_asset_name=account_name,
+        expectation_suite_name=expectation_suite_name,
+    )
+    print_gx_result(
+        directory=bank_data["directory"],
+        file=bank_data["file"],
+        gx_result=gx_result,
+    )
+    return gx_result
 
 
 @task
-def dq_check(transformed_data: dict) -> dict:
-    dq_results = {}
-    for file_path, df in transformed_data.items():
-        config = file_data[file_path]["config"]
-        account_name = config["account_name"]
-        expectation_suite_name = config["expectation_suite_name"]
-        gx_result = gx_dq_check(
-            df_to_validate=df,
-            data_asset_name=account_name,
-            expectation_suite_name=expectation_suite_name,
-        )
-        print_gx_result(
-            directory=os.path.dirname(file_path),
-            file=os.path.basename(file_path),
-            gx_result=gx_result,
-        )
-        dq_results[file_path] = gx_result
-    return dq_results
+def gx_email(gx_results, bank_data, **kwargs):
+    email_sender = EmailSender()
+    dq_check_parameters = {
+        "asset_name": bank_data["config"]["account_name"],
+        "file": bank_data["directory"] + bank_data["file"],
+        "error_exceptions": gx_results["error_message"],
+        "data_docs_site": gx_results["data_docs_site"],
+        "timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+
+    email_sender.send_dq_notification_email(parameters=dq_check_parameters)
 
 
-# @task
-# def categorize_data(transformed_data: dict) -> dict:
-#     categorized_data = {}
-#     for file_path, df in transformed_data.items():
-#         categorized_data[file_path] = add_category(df)
-#     return categorized_data
+@task
+def categorize_data(df, **kwargs) -> dict:
+    df = add_category(df)
+    return df
 
 
-# @task
-# def load_data_into_db(categorized_data: dict) -> dict:
-#     load_results = {}
-#     mongodb_hook = MongoDBHook()
-#     for file_path, df in categorized_data.items():
-#         account_name = file_data[file_path]["config"]["account_name"]
-#         result = mongodb_hook.insert_df(df=df, account=account_name)
-#         load_results[file_path] = result
-#     return load_results
+@task
+def load_data_into_db(df, bank_data, **kwargs) -> dict:
+    mongodb_hook = MongoDBHook()
+    account_name = bank_data["config"]["account_name"]
+    result = mongodb_hook.insert_df(df=df, account=account_name)
+    return result
 
 
-# @task
-# def move_processed_files(categorized_data: dict) -> None:
-#     for file_path, _ in categorized_data.items():
-#         change_transaction_file_name(
-#             directory=os.path.dirname(file_path),
-#             old_name=os.path.basename(file_path),
-#             df=categorized_data[file_path],
-#             bank_acount=file_data[file_path]["config"]["account_name"],
-#         )
-#         move_file(file_name=file_path, old_directory=os.path.dirname(file_path), new_suffix="processed/")
+@task
+def move_processed_files(df: pd.DataFrame, bank_data: dict, **kwargs) -> None:
+    directory = bank_data["directory"]
+    file = bank_data["file"]
+    file_name = change_transaction_file_name(
+        directory=directory,
+        old_name=file,
+        df=df,
+        bank_acount=bank_data["config"]["account_name"],
+    )
+    kwargs["logger"].info(f"File Name: {file_name}")
+    move_file(
+        file_name=file_name,
+        old_directory=bank_data["directory"],
+        new_suffix="processed/",
+    )
 
 
 @flow(
     name="Pipeline Flow",
-    description="My flow using SequentialTaskRunner",
+    description="",
     task_runner=SequentialTaskRunner(),
 )
 def flow():
-    directory = config_directory
-    file_paths = get_files_list(directory, "", ".csv")
-    file_data = identify_bank_data(file_paths)
-    transformed_data = transform_data(file_data)
-    dq_results = dq_check(transformed_data)
-    # categorized_data = categorize_data(transformed_data)
-    # load_results = load_data_into_db(categorized_data)
-    # move_processed_files(categorized_data)
+    logger = get_run_logger()
+    file_paths = get_files_list(config_directory, "", ".csv")
+    bank_data = identify_bank_data(file_paths)
+    logger.info(f"Bank Data: {bank_data}")
+    file_path = file_paths[0]  # to figure out how to branch off
+    transformed_data = transform_data(file_path, bank_data)
+    gx_results = dq_check(transformed_data, bank_data)
+    if not gx_results["success"]:
+        gx_email(gx_results=gx_results, bank_data=bank_data)
+    categorized_data = categorize_data(df=transformed_data)
+    load_data_into_db(df=categorized_data, bank_data=bank_data)
+    move_processed_files(categorized_data, bank_data=bank_data, logger=logger)
     return
 
 
