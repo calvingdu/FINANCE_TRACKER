@@ -27,4 +27,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-execute = "src.scripts.main"
+execute = "src.scripts.main:main"

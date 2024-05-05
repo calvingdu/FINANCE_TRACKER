@@ -6,7 +6,7 @@ import pandas as pd
 from prefect import flow
 from prefect import get_run_logger
 from prefect import task
-from prefect.task_runners import SequentialTaskRunner
+from prefect.task_runners import ConcurrentTaskRunner
 
 from configuration.config_setup import config
 from src.plugins.categorization_model.categorization import add_category
@@ -38,18 +38,17 @@ def get_files_list(
 
 
 @task(name="Identification")
-def identify_bank_data(file_paths: list[str], **kwargs) -> dict:
-    for file_string in file_paths:  # make this branch off
-        directory, file = os.path.split(file_string)
-        if not directory.endswith("/"):
-            directory += "/"
-        config, transform_func = identify_accounts(directory=directory, file=file)
-        bank_data = {
-            "config": config,
-            "transform_func": transform_func,
-            "directory": directory,
-            "file": file,
-        }
+def identify_bank_data(file_string: str, **kwargs) -> dict:
+    directory, file = os.path.split(file_string)
+    if not directory.endswith("/"):
+        directory += "/"
+    config, transform_func = identify_accounts(directory=directory, file=file)
+    bank_data = {
+        "config": config,
+        "transform_func": transform_func,
+        "directory": directory,
+        "file": file,
+    }
     return bank_data
 
 
@@ -126,24 +125,38 @@ def move_processed_files(df: pd.DataFrame, bank_data: dict, **kwargs) -> None:
     )
 
 
-@flow(
-    name="Pipeline Flow",
-    description="",
-    task_runner=SequentialTaskRunner(),
-)
+@flow(name="Pipeline Flow", description="", task_runner=ConcurrentTaskRunner())
 def flow():
     logger = get_run_logger()
     file_paths = get_files_list(config_directory, "", ".csv")
-    bank_data = identify_bank_data(file_paths)
-    logger.info(f"Bank Data: {bank_data}")
-    file_path = file_paths[0]  # to figure out how to branch off
-    transformed_data = transform_data(file_path, bank_data)
-    gx_results = dq_check(transformed_data, bank_data)
-    if not gx_results["success"]:
-        gx_email(gx_results=gx_results, bank_data=bank_data)
-    categorized_data = categorize_data(df=transformed_data)
-    load_data_into_db(df=categorized_data, bank_data=bank_data)
-    move_processed_files(categorized_data, bank_data=bank_data, logger=logger)
+    mapped_configs = identify_bank_data.map(file_paths)
+    for bank_config in mapped_configs:
+        bank_data = bank_config.result()
+        logger.info(f"Bank Data: {bank_data}")
+        file_path = bank_data["directory"] + bank_data["file"]
+        transformed_data = transform_data(
+            file_path,
+            bank_data,
+            wait_for=[identify_bank_data],
+        )
+        gx_results = dq_check(transformed_data, bank_data, wait_for=[transform_data])
+        logger.info(f"GX Result: {gx_results['success']}")
+        if not gx_results["success"]:
+            logger.info(f"GX Errors: {gx_results['error_message']}")
+            logger.info(f"Data Docs Site: {gx_results['data_docs_site']}")
+            gx_email(gx_results=gx_results, bank_data=bank_data, wait_for=[dq_check])
+
+        categorized_data = categorize_data(
+            df=transformed_data,
+            wait_for=[transform_data],
+        )
+        load_result = load_data_into_db(
+            df=categorized_data,
+            bank_data=bank_data,
+            wait_for=[categorize_data],
+        )
+        logger.info(f"Rows Updated: {load_result}")
+        # move_processed_files(categorized_data, bank_data=bank_data, logger=logger, wait_for=[load_data_into_db])
     return
 
 

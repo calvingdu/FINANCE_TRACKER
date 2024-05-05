@@ -11,11 +11,9 @@ git clone https://github.com/calvingdu/Transactions-Pipeline.git
 
 ## Install the required dependencies:
 poetry install
-pip3 install -e '.[dev]'
 
 ## Configure the necessary environment variable
 export PYTHONPATH=.
-
 export PYTHON_ENV=develop
 
 ## Prefect
