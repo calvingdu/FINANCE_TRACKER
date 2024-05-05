@@ -3,11 +3,11 @@ config_version: 1.0
 template_name:
 module_name: great_expectations.checkpoint
 class_name: Checkpoint
-run_name_template: AMEX
+run_name_template: CIBC_CC
 expectation_suite_name: transaction_suite
 batch_request:
   datasource_name: pandas_datasource
-  data_asset_name: AMEX
+  data_asset_name: CIBC_CC
   options: {}
 action_list:
   - name: store_validation_result

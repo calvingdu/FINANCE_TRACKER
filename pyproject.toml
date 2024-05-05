@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "finance-tracker"
+name = "src"
 version = "0.1.0"
 description = "A pipeline that processes bank transaction data"
 authors = ["Calvin <calvingdu@gmail.com>"]
@@ -25,7 +25,8 @@ flake8 = "6.0.0"
 pre-commit = "3.3.3"
 
 
-
+[tool.poetry.scripts]
+pipeline = "src.scripts.main:main_flow"
 
 [build-system]
 requires = ["poetry-core"]
