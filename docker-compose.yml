@@ -1,21 +1,24 @@
 version: '3.8'
-services:
-  app:
-    build: .
-    volumes:
-      - ../Statement_Data:/data
-    depends_on:
-      - mongo
-    environment:
-      MONGO_URI: mongodb://mongo:27017/test_database
 
+services:
   mongo:
     image: mongo:latest
-    volumes:
-      - mongo-data:/data/db
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mongo-network
 
 volumes:
-  mongo-data:
+  mongodb_data:
+    driver: local
+
+networks:
+  mongo-network:
+    driver: bridge
