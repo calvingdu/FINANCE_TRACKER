@@ -12,13 +12,22 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: admin
     volumes:
       - mongodb_data:/data/db
-    networks:
-      - mongo-network
+
+  app:
+    build: .
+    container_name: python_app
+    restart: always
+    environment:
+      MONGO_USERNAME: admin
+      MONGO_PASSWORD: admin
+      MONGO_HOSTNAME: mongo
+      MONGO_PORT: 27017
+    depends_on:
+      - mongo
+    volumes:
+      - statement_data:/data/statements
 
 volumes:
   mongodb_data:
-    driver: local
-
-networks:
-  mongo-network:
-    driver: bridge
+  prefect:
+  statement_data:

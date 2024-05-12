@@ -1,13 +1,11 @@
-FROM python:3.9
+FROM prefecthq/prefect:2-python3.10
 
 COPY . .
-RUN pip install poetry
-RUN poetry install
-RUN pip install pandas
+RUN pip install -r requirements.txt
 
 ENV PYTHON_ENV=develop
-ENV PREFECT_API_URL="http://127.0.0.1:4200/api"
-RUN prefect config set PREFECT_API_URL="http://127.0.0.1:4200/api"
-RUN prefect server start
+ENV PYTHONPATH=.
 
-CMD [ "python", "./src/scripts/main.py"]
+COPY flows /opt/prefect/flows
+
+CMD ["python", "flows/main.py"]

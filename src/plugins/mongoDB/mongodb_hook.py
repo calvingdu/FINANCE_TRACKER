@@ -7,8 +7,13 @@ from pymongo import MongoClient
 
 class MongoDBHook:
     def __init__(self):
-        self.client = MongoClient()
-        self.db = self.client.test_database
+        self.client = MongoClient(
+            host="localhost",
+            port=27017,
+            username="admin",
+            password="admin",
+        )
+        self.db = self.client.test
         self.collection = self.db.testing
 
     def insert_df(self, df: pd.DataFrame, account: str):
@@ -42,6 +47,5 @@ class MongoDBHook:
             cursor = self.collection.find({"account": account})
         df = pd.DataFrame(list(cursor))
 
-        # Delete the _id
         del df["_id"]
         return df
