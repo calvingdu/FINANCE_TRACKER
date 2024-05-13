@@ -16,12 +16,11 @@ services:
   app:
     build: .
     container_name: python_app
-    restart: always
     environment:
-      MONGO_USERNAME: admin
-      MONGO_PASSWORD: admin
-      MONGO_HOSTNAME: mongo
-      MONGO_PORT: 27017
+      PYTHON_ENV: develop
+      PYTHONPATH: .
+    ports:
+      - "4200:4200"
     depends_on:
       - mongo
     volumes:
@@ -29,5 +28,4 @@ services:
 
 volumes:
   mongodb_data:
-  prefect:
   statement_data:
