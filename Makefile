@@ -20,7 +20,7 @@ prefect-local:
 
 # Pipeline Start
 pipeline:
-	python3 src/scripts/main.py
+	python3 flows/main.py
 
 # DOCKER
 build:
